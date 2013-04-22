@@ -32,6 +32,23 @@
   </head>
   <body>
     <h1>django-lemonldap :: DEBUG</h1>
+    <h2>Authentication HTTP HEADERS</h2>
+    <table>
+      <tr>
+        <th>Parameter</th>
+        <th>Value</th>
+      </tr>
+{% for key,value in auth_headers.items %}
+      <tr>
+        <td class="parameter">{{key}}</td>
+        <td class="value">{{value}}</td>
+      </tr>
+{% empty %}
+      <tr>
+        <td class="empty" colspan="2">No data</td>
+      </tr>
+{% endfor %}
+    </table>
     <h2>HTTP HEADERS</h2>
     <table>
       <tr>
