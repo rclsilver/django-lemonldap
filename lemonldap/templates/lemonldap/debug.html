@@ -1,10 +1,79 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
   <head>
     <meta charset="utf-8">
     <title>django-lemonldap :: DEBUG</title>
   </head>
   <body>
     <h1>django-lemonldap :: DEBUG</h1>
+    <h2>HTTP HEADERS</h2>
+    <table>
+      <tr>
+        <th>Parameter</th>
+        <th>Value</th>
+      </tr>
+{% for key,value in request.META.items %}
+      <tr>
+        <td class="parameter">{{key}}</td>
+        <td class="value">{{value}}</td>
+      </tr>
+{% empty %}
+      <tr>
+        <td class="empty" colspan="2">No data</td>
+      </tr>
+{% endfor %}
+    </table>
+    <h2>User Session</h2>
+    <table>
+      <tr>
+        <th>Parameter</th>
+        <th>Value</th>
+      </tr>
+{% for key,value in request.session.items %}
+      <tr>
+        <td class="parameter">{{key}}</td>
+        <td class="value">{{value}}</td>
+      </tr>
+{% empty %}
+      <tr>
+        <td class="empty" colspan="2">No data</td>
+      </tr>
+{% endfor %}
+    </table>
+    <h2>Current User</h2>
+{% if request.user.is_authenticated %}
+    <table>
+      <tr>
+        <th>Parameter</th>
+        <th>Value</th>
+      </tr>
+      <tr>
+        <td class="parameter">username</td>
+        <td class="value">{{request.user.username}}</td>
+      </tr>
+      <tr>
+        <td class="parameter">is_superuser</td>
+        <td class="value">{{request.user.is_superuser}}</td>
+      </tr>
+      <tr>
+        <td class="parameter">is_staff</td>
+        <td class="value">{{request.user.is_staff}}</td>
+      </tr>
+      <tr>
+        <td class="parameter">is_active</td>
+        <td class="value">{{request.user.is_active}}</td>
+      </tr>
+      <tr>
+        <td class="parameter">groups</td>
+        <td class="value">{{request.user.groups.all}}</td>
+      </tr>
+      <tr>
+        <td class="parameter">permissions</td>
+        <td class="value">{{request.user.user_permissions.all}}</td>
+      </tr>
+    </table>
+{% else %}
+    <p>Not logged in.</p>
+{% endif %}
   </body>
 </html>
