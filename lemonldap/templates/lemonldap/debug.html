@@ -84,13 +84,13 @@
 {% else %}
     <p>Not logged in.</p>
 {% endif %}
-    <h2>HTTP HEADERS</h2>
+    <h2>User Session</h2>
     <table>
       <tr>
         <th>Parameter</th>
         <th>Value</th>
       </tr>
-{% for key,value in request.META.items %}
+{% for key,value in request.session.items %}
       <tr>
         <td class="parameter">{{key}}</td>
         <td class="value">{{value}}</td>
@@ -101,13 +101,13 @@
       </tr>
 {% endfor %}
     </table>
-    <h2>User Session</h2>
+    <h2>HTTP HEADERS</h2>
     <table>
       <tr>
         <th>Parameter</th>
         <th>Value</th>
       </tr>
-{% for key,value in request.session.items %}
+{% for key,value in request.META.items %}
       <tr>
         <td class="parameter">{{key}}</td>
         <td class="value">{{value}}</td>
