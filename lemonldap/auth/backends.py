@@ -50,8 +50,6 @@ class LemonldapUserBackend(RemoteUserBackend):
         user.last_name = user_infos['lastname']
         user.is_superuser = 'true' == user_infos['is_superuser'] or user_infos['is_superuser'] is True
         user.is_staff = 'true' == user_infos['is_staff'] or user_infos['is_staff'] is True
-        print "is_superuser=%s" % user.is_superuser
-        print "is_staff=%s" % user.is_staff
         user.save()
         return user
 
