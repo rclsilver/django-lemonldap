@@ -18,6 +18,14 @@ class LemonldapAuthenticationMiddleware(object):
         ('is_staff', 'HTTP_AUTH_STAFF', False, 'false'),
     ]
     
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        response = self.get_response(request)
+        self.process_request(request)
+        return response
+    
     def process_request(self, request):
         # AuthenticationMiddleware is required so that request.user exists.
         if not hasattr(request, 'user'):
