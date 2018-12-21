@@ -52,7 +52,7 @@ class LemonldapAuthenticationMiddleware(object):
         # If the user is already autheniticated and that user is the user we are
         # getting passed in the headers, then the correct user is already persisted
         # in the session and we don't need to continue.
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             if request.user.username == self.clean_username(user_infos['username'], request):
                 return
         
