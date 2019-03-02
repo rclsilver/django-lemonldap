@@ -56,7 +56,7 @@ class LemonldapAuthenticationMiddleware(object):
             if request.user.username == self.clean_username(user_infos['username'], request):
                 return
         
-        user = auth.authenticate(lemonldap_user=user_infos)
+        user = auth.authenticate(request, lemonldap_user=user_infos)
         
         if user:
             # User is valid. Set request.user and persist user in the session
